@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 enum AvatarType { type1, type2, type3 }
 
 class AvatarWidget extends StatelessWidget {
-  bool? hasStory;
-  String thumbPath;
-  String? nickname;
-  AvatarType type;
-  double? size;
+  final bool? hasStory;
+  final String thumbPath;
+  final String? nickname;
+  final AvatarType type;
+  final double? size;
 
-  AvatarWidget({
+  const AvatarWidget({
     Key? key,
     required this.type,
     required this.thumbPath,
@@ -27,7 +27,7 @@ class AvatarWidget extends StatelessWidget {
       case AvatarType.type2:
         return type2Widget();
       case AvatarType.type3:
-        return Container();
+        return type3Widget();
     }
   }
 
@@ -65,6 +65,21 @@ class AvatarWidget extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget type3Widget() {
+    return Row(
+      children: [
+        type1Widget(),
+        Text(
+          nickname ?? '',
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold
+          ),
+        )
+      ],
     );
   }
 }
