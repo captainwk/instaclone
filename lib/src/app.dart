@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:instaclone/src/controller/bottom_nav_controller.dart';
+import 'package:instaclone/src/pages/home.dart';
 import 'components/image_data.dart';
 
 class App extends GetView<BottomNavController> {
@@ -12,13 +13,13 @@ class App extends GetView<BottomNavController> {
         onWillPop: controller.willPopAction,
         child: Obx(
           () => Scaffold(
-            appBar: AppBar(),
             body: IndexedStack(
               index: controller.pageIndex.value,
               children: [
-                Container(
-                  child: const Center(child: Text('HOME')),
-                ),
+                const Home(),
+                // Container(
+                //   child: const Center(child: Text('HOME')),
+                // ),
                 Container(
                   child: const Center(child: Text('SEARCH')),
                 ),
