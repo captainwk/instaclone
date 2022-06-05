@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:instaclone/src/controller/bottom_nav_controller.dart';
 import 'package:instaclone/src/pages/home.dart';
+import 'package:instaclone/src/pages/search.dart';
 import 'components/image_data.dart';
 
 class App extends GetView<BottomNavController> {
@@ -20,9 +21,10 @@ class App extends GetView<BottomNavController> {
                 // Container(
                 //   child: const Center(child: Text('HOME')),
                 // ),
-                Container(
-                  child: const Center(child: Text('SEARCH')),
-                ),
+                const Search(),
+                // Container(
+                //   child: const Center(child: Text('SEARCH')),
+                // ),
                 Container(
                   child: const Center(child: Text('UPLOAD')),
                 ),
