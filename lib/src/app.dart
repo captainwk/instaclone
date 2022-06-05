@@ -21,10 +21,15 @@ class App extends GetView<BottomNavController> {
                 // Container(
                 //   child: const Center(child: Text('HOME')),
                 // ),
-                const Search(),
-                // Container(
-                //   child: const Center(child: Text('SEARCH')),
-                // ),
+
+                Navigator(
+                  key: controller.serchPageNavigationKey,
+                  onGenerateRoute: (routeSetting) {
+                    return MaterialPageRoute(builder: (context) => const Search());
+                  },
+                ),
+                // const Search(),
+
                 Container(
                   child: const Center(child: Text('UPLOAD')),
                 ),

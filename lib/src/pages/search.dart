@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:instaclone/src/pages/Search/search_focus.dart';
 import 'package:quiver/iterables.dart';
 
 class Search extends StatefulWidget {
@@ -53,24 +54,31 @@ class _SearchState extends State<Search> {
       child: Row(
         children: [
           Expanded(
-            child: Container(
-              // margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: const Color(0xFFEFEFEF),
-              ),
-              child: Row(
-                children: const [
-                  Icon(Icons.search),
-                  Text(
-                    '검색',
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Color(0xFF838383),
+            child: GestureDetector(
+              onTap: () {
+                // Getx 말고 원래 flutter 방식을 사용 
+                // Get.to(SearchFocus());
+                Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => const SearchFocus()));
+              },
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: const Color(0xFFEFEFEF),
+                ),
+                child: Row(
+                  children: const [
+                    Icon(Icons.search),
+                    Text(
+                      '검색',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Color(0xFF838383),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -89,20 +97,22 @@ class _SearchState extends State<Search> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: List.generate(
             groupBox.length,
-            (index) => Expanded(
-              child: Column(
-                children: List.generate(
-                  groupBox[index].length,
-                  (jndex) => Container(
-                    height: (Get.width / 3) * groupBox[index][jndex],
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        color: Colors.primaries[
-                            Random().nextInt(Colors.primaries.length)]),
+                (index) =>
+                Expanded(
+                  child: Column(
+                    children: List.generate(
+                      groupBox[index].length,
+                          (jndex) =>
+                          Container(
+                            height: (Get.width / 3) * groupBox[index][jndex],
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.white),
+                                color: Colors.primaries[
+                                Random().nextInt(Colors.primaries.length)]),
+                          ),
+                    ),
                   ),
                 ),
-              ),
-            ),
           ).toList(),
         ),
       ),

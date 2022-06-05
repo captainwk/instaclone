@@ -14,7 +14,12 @@ enum PageName {
 }
 
 class BottomNavController extends GetxController {
+  //static으로 선엄함으로 어느 곳에서든 BottomNavController를 쉽게 호출하기 위해
+  static BottomNavController get to => Get.find();
+
   RxInt pageIndex = 0.obs;
+  GlobalKey<NavigatorState> serchPageNavigationKey =
+      GlobalKey<NavigatorState>();
   List<int> bottomHistory = [0];
 
   void changeBottomNav(int index, {bool hasGesture = true}) {
@@ -58,7 +63,13 @@ class BottomNavController extends GetxController {
 
       return false;
     } else {
-      print('goto before page!');
+      var page = PageName.values[bottomHistory.last];
+      if(page == PageName.search) {
+        // maybePop pop할게 있으면 true , pop할게 없으면 false
+        var isPop = await serchPageNavigationKey.currentState!.maybePop();
+        if(isPop) return false;
+      }
+
       bottomHistory.removeLast();
       var index = bottomHistory.last;
       changeBottomNav(index, hasGesture: false);
